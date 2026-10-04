@@ -1,0 +1,232 @@
+/* ==========================================================
+   Covey Brown Photography — shared stylesheet
+   Every page links to this one file, so a change here
+   changes the whole site at once.
+   ========================================================== */
+
+
+/* ---------- 1. Design tokens ----------
+   Custom properties (variables) hold the site's colors, fonts
+   and spacing. Use them elsewhere with var(--name).
+   Change a value here and it updates everywhere it's used. */
+:root {
+  --bg: #000;            /* page background — black lets photos glow */
+  --fg: #f2f2f0;         /* main text — a soft off-white */
+  --muted: #8f8f8a;      /* quieter text: nav links, captions, footer */
+  --frame: #1a1a1a;      /* fills a photo's space while it loads */
+
+  --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+
+  --gutter: clamp(16px, 4vw, 48px);  /* space at the left/right edges */
+  --measure: 34rem;                  /* comfortable reading width for text */
+
+  color-scheme: dark;
+}
+
+
+/* ---------- 2. Base ----------
+   Sensible defaults for every page. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--display);
+  font-size: 1.25rem;
+  line-height: 1.6;
+
+  /* Stack header, main and footer top to bottom. Together with
+     "flex: 1" on <main>, this keeps the footer at the bottom
+     even when a page is short. */
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, p, ul, figure { margin: 0; }
+
+img {
+  display: block;
+  max-width: 100%;   /* never wider than its container */
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+/* A visible outline when someone moves through links with the
+   Tab key — important for keyboard users, so don't remove it. */
+a:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 4px;
+}
+
+
+/* ---------- 3. Header and navigation ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;              /* lets the nav drop below on narrow phones */
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding: 1.75rem var(--gutter);
+}
+
+.site-name {
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;   /* remove the bullet points */
+  padding: 0;
+  display: flex;      /* put the links side by side */
+  gap: 1.75rem;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--fg); }
+
+/* aria-current="page" marks the page you're on (see the HTML). */
+.nav-links a[aria-current="page"] {
+  color: var(--fg);
+  text-decoration: underline;
+}
+
+
+/* ---------- 4. Main content ---------- */
+main {
+  flex: 1;   /* fill the space between header and footer */
+  padding: 1.5rem var(--gutter) 5rem;
+}
+
+.page-title {
+  font-weight: 300;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+
+.prose { max-width: var(--measure); }
+.prose p + p { margin-top: 1em; }   /* space between paragraphs */
+
+
+/* ---------- 5. Home page ---------- */
+.splash {
+  display: grid;
+  place-content: center;   /* center everything on the screen */
+  justify-items: center;
+  gap: 2rem;
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.splash h1 {
+  font-weight: 300;
+  font-size: clamp(1.75rem, 6vw, 3.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-wrap: balance;
+  animation: fade 1.6s ease-out both;
+}
+
+/* The links fade in just after your name. */
+.splash .nav-links {
+  animation: fade 1.6s 0.7s ease-out both;
+}
+
+
+/* ---------- 6. Portfolio grid ----------
+   auto-fill makes as many columns as fit: 3 or 4 on a wide
+   screen, 1 on a phone. No extra code needed per screen size. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 2vw, 2rem);
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 2;   /* the shape most cameras shoot */
+  object-fit: cover;     /* fill that shape, trimming edges if needed */
+  background: var(--frame);
+}
+
+.gallery figcaption {
+  margin-top: 0.6rem;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+
+/* ---------- 7. About page ---------- */
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 2.5rem clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  max-width: 62rem;
+}
+
+.portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--frame);
+}
+
+
+/* ---------- 8. Contact page ---------- */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-list span {
+  display: block;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+
+/* ---------- 9. Footer ---------- */
+.site-footer {
+  padding: 1.5rem var(--gutter) 2rem;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.home .site-footer { text-align: center; }
+
+
+/* ---------- 10. Motion ---------- */
+@keyframes fade {
+  from { opacity: 0.001; }
+  to   { opacity: 1; }
+}
+
+/* Respect people who've asked their device for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

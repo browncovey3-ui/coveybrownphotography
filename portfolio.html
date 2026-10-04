@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio | Covey Brown Photography</title>
+  <meta name="description" content="Selected photographs by Covey Brown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- The header is the same on every inside page.
+       Your name links back to the home page, so the menu
+       doesn't need a separate "Home" link. -->
+  <header class="site-header">
+    <a class="site-name" href="index.html">Covey Brown</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <!-- aria-current="page" marks the page you're on.
+             Move it to the matching link on each page. -->
+        <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Portfolio</h1>
+
+    <!-- Each photo is a <figure>: the image plus its caption.
+         To add your own photo:
+           1. Put the file in the images folder (e.g. images/harbor-dawn.jpg)
+           2. Change src="..." to that path
+           3. Change alt="..." to a short description of what's in the photo.
+              Screen readers read it aloud, and Google uses it too.
+           4. Change the <figcaption> to the photo's title and place.
+         loading="lazy" waits to download a photo until you scroll near it,
+         so the page opens faster. -->
+    <div class="gallery">
+
+      <figure>
+        <img src="images/placeholder-1.svg" alt="Placeholder for photo 1" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/placeholder-2.svg" alt="Placeholder for photo 2" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/placeholder-3.svg" alt="Placeholder for photo 3" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/placeholder-4.svg" alt="Placeholder for photo 4" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/placeholder-5.svg" alt="Placeholder for photo 5" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/placeholder-6.svg" alt="Placeholder for photo 6" loading="lazy">
+        <figcaption>Title, place</figcaption>
+      </figure>
+
+      <!-- Want more photos? Copy a whole <figure> ... </figure> block,
+           paste it here, and change the src, alt and caption. -->
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Covey Brown</p>
+  </footer>
+
+</body>
+</html>
